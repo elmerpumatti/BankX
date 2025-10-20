@@ -22,7 +22,11 @@ public class RiskService {
                 .subscribeOn(Schedulers.boundedElastic()) // bloqueante a elastic
                 .map(max -> {
                     if ("DEBIT".equalsIgnoreCase(type)) {
-                        return amount.compareTo(max) <= 0;
+                        if (amount.compareTo(max) <= 0) {
+                            return amount.compareTo(max) <= 0;
+                        }else{
+                            System.out.println("Amount");
+                        }
                     }
                     return true;
                 });
